@@ -1,6 +1,6 @@
 ---
 import type { Dictionary, Locale } from '../i18n/config';
-import { RELEASES_URL, REPO_URL, localePath } from '../i18n/config';
+import { RELEASES_URL, REPO_URL, PERSONAL_URL, CONTACT_EMAIL, localePath } from '../i18n/config';
 
 interface Props {
   locale: Locale;
@@ -21,6 +21,13 @@ const year = new Date().getFullYear();
         <a href={RELEASES_URL} rel="noopener">{t.releases} →</a>
         <a href={REPO_URL} rel="noopener">{t.source} →</a>
       </nav>
+      <div class="contact">
+        <p class="mono-label contact-title">{t.contact}</p>
+        <nav class="links" aria-label={t.contact}>
+          <a href={PERSONAL_URL} rel="noopener">{t.website} →</a>
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+        </nav>
+      </div>
     </div>
     <div class="bottom">
       <p class="mono-label">© {year} NOVA</p>
@@ -52,6 +59,13 @@ const year = new Date().getFullYear();
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
+  }
+  .contact {
+    margin-top: 2rem;
+  }
+  .contact-title {
+    margin: 0 0 1rem;
+    color: var(--muted-foreground);
   }
   .links a {
     font-family: var(--font-mono);

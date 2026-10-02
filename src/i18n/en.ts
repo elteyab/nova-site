@@ -87,6 +87,8 @@ export const en: Dictionary = {
     source: 'Source code',
     sitemap: 'Sitemap',
     top: 'Back to top',
+    contact: 'Contact',
+    website: 'Personal website',
   },
   sitemapPage: {
     title: 'Sitemap.',

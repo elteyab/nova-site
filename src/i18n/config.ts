@@ -3,6 +3,8 @@ export const RELEASES_URL = 'https://github.com/Tayeb-Ali/nova/releases';
 export const REPO_URL = 'https://github.com/Tayeb-Ali/nova';
 
 export const SITE_URL = 'https://nova.elteyab.sd';
+export const PERSONAL_URL = 'https://elteyab.sd';
+export const CONTACT_EMAIL = 'elteyab@smart.sd';
 
 export type Locale = 'en' | 'ar' | 'fr';
 
@@ -46,7 +48,7 @@ export interface Dictionary {
   };
   quote: { text: string; author: string };
   final: { title: string; body: string; cta: string };
-  footer: { tagline: string; rights: string; releases: string; source: string; sitemap: string; top: string };
+  footer: { tagline: string; rights: string; releases: string; source: string; sitemap: string; top: string; contact: string; website: string };
   sitemapPage: { title: string; intro: string; pages: string; sections: string; links: string };
   notFound: { title: string; body: string; back: string };
 }

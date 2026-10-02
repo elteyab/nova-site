@@ -87,6 +87,8 @@ export const ar: Dictionary = {
     source: 'الشيفرة المصدرية',
     sitemap: 'خريطة الموقع',
     top: 'عودة للأعلى',
+    contact: 'تواصل',
+    website: 'الموقع الشخصي',
   },
   sitemapPage: {
     title: 'خريطة الموقع.',
