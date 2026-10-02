@@ -1,0 +1,78 @@
+---
+import type { Dictionary } from '../i18n/config';
+
+interface Props {
+  t: Dictionary['features'];
+}
+
+const { t } = Astro.props;
+---
+
+<section class="section texture-grid" id="features" aria-labelledby="features-title">
+  <div class="container">
+    <p class="mono-label kicker">{t.kicker}</p>
+    <h2 class="section-title" id="features-title">{t.title}</h2>
+    <div class="grid">
+      {t.items.map((f) => (
+        <article class="card">
+          <h3>{f.title}</h3>
+          <p>{f.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .kicker {
+    margin: 0 0 1rem;
+  }
+  .section-title {
+    margin-bottom: 3rem;
+  }
+  .grid {
+    display: grid;
+    gap: 0;
+    border: var(--line-medium);
+  }
+  .card {
+    background: var(--background);
+    border-bottom: var(--line-thin);
+    padding: 2rem;
+    transition: background-color 100ms, color 100ms;
+  }
+  .card:last-child {
+    border-bottom: none;
+  }
+  .card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .card p {
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: 1rem;
+  }
+  .card:hover {
+    background: var(--foreground);
+    color: var(--background);
+  }
+  .card:hover p {
+    color: var(--background);
+  }
+  @media (min-width: 860px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .card {
+      border-bottom: var(--line-thin);
+      border-inline-end: var(--line-thin);
+    }
+    .card:nth-child(3n) {
+      border-inline-end: none;
+    }
+    .card:nth-child(n + 4) {
+      border-bottom: none;
+    }
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+import type { Dictionary, Locale } from '../i18n/config';
+import { RELEASES_URL, REPO_URL, localePath } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+  t: Dictionary['footer'];
+}
+
+const { locale, t } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer section">
+  <div class="container">
+    <div class="top">
+      <a class="brand" href={localePath(locale)}>NOVA</a>
+      <p class="tagline">{t.tagline}</p>
+      <nav class="links" aria-label="footer">
+        <a href={RELEASES_URL} rel="noopener">{t.releases} →</a>
+        <a href={REPO_URL} rel="noopener">{t.source} →</a>
+      </nav>
+    </div>
+    <div class="bottom">
+      <p class="mono-label">© {year} NOVA</p>
+      <p class="mono-label rights">{t.rights}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: var(--line-ultra);
+  }
+  .top {
+    margin-bottom: 3rem;
+  }
+  .brand {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 2.5rem;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+  .tagline {
+    font-size: 1.25rem;
+    margin: 1rem 0 2rem;
+    max-width: 36rem;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .links a {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+  }
+  .links a:hover {
+    text-decoration: underline;
+  }
+  .bottom {
+    border-top: var(--hairline);
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .bottom p {
+    margin: 0;
+    color: var(--muted-foreground);
+  }
+  .rights {
+    text-transform: none;
+    letter-spacing: normal;
+  }
+</style>

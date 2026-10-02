@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { en } from '../i18n/en';
+import { localePath } from '../i18n/config';
+---
+
+<BaseLayout locale="en" dict={en} path="/404/" noindex={true}>
+  <main id="main">
+    <div class="container wrap">
+      <p class="mono-label">NOVA</p>
+      <h1 class="display-7xl">{en.notFound.title}</h1>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="lead">{en.notFound.body}</p>
+      <a class="btn btn-primary" href={localePath('en')}>{en.notFound.back}</a>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .wrap {
+    padding-block: 7rem;
+  }
+  .display-7xl {
+    margin: 1rem 0 2rem;
+  }
+  .rule {
+    border-top: var(--line-ultra);
+    margin-bottom: 2rem;
+  }
+  .lead {
+    margin: 0 0 2.5rem;
+  }
+</style>

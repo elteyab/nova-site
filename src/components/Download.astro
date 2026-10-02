@@ -1,0 +1,69 @@
+---
+import type { Dictionary } from '../i18n/config';
+import { PLAY_URL, RELEASES_URL } from '../i18n/config';
+
+interface Props {
+  t: Dictionary['download'];
+}
+
+const { t } = Astro.props;
+---
+
+<section class="section texture-diagonal" id="download" aria-labelledby="download-title">
+  <div class="container">
+    <p class="mono-label kicker">{t.kicker}</p>
+    <h2 class="section-title" id="download-title">{t.title}</h2>
+    <p class="lead body">{t.body}</p>
+    <div class="ctas">
+      <a class="btn btn-primary" href={PLAY_URL} rel="noopener">{t.playCta}</a>
+      <a class="btn btn-outline" href={RELEASES_URL} rel="noopener">{t.apkCta}</a>
+    </div>
+    <aside class="reqs" aria-label={t.reqTitle}>
+      <p class="mono-label req-title">{t.reqTitle}</p>
+      <ul>
+        {t.reqs.map((r) => (
+          <li>{r}</li>
+        ))}
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .kicker {
+    margin: 0 0 1rem;
+  }
+  .section-title {
+    margin-bottom: 1.5rem;
+  }
+  .body {
+    max-width: 44rem;
+    margin: 0 0 2.5rem;
+  }
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  .reqs {
+    border: var(--line-medium);
+    background: var(--background);
+    padding: 2rem;
+    max-width: 44rem;
+  }
+  .req-title {
+    margin: 0 0 1rem;
+  }
+  ul {
+    margin: 0;
+    padding-inline-start: 1.25rem;
+  }
+  li {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+  li:last-child {
+    margin-bottom: 0;
+  }
+</style>

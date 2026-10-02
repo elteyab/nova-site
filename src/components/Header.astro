@@ -1,0 +1,106 @@
+---
+import type { Dictionary, Locale } from '../i18n/config';
+import { LOCALES, localePath } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+  t: Dictionary['header'];
+}
+
+const { locale, t } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href={localePath(locale)} aria-label="Nova home">NOVA<sup>IDE</sup></a>
+    <nav class="nav" aria-label="primary">
+      <a href="#features">{t.features}</a>
+      <a href="#download">{t.download}</a>
+    </nav>
+    <div class="langs" role="group" aria-label={t.langLabel}>
+      {LOCALES.map((l) => (
+        <a
+          href={localePath(l.code)}
+          hreflang={l.code}
+          aria-current={l.code === locale ? 'page' : undefined}
+          class:list={[{ active: l.code === locale }]}
+        >
+          {l.code.toUpperCase()}
+        </a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: var(--line-medium);
+    background: var(--background);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 72px;
+  }
+  .brand {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+  .brand sup {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    border: var(--line-thin);
+    padding: 0.1rem 0.35rem;
+    margin-inline-start: 0.5rem;
+    vertical-align: super;
+  }
+  .nav {
+    display: none;
+    gap: 2rem;
+  }
+  .nav a {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+  }
+  .nav a:hover {
+    border-bottom-color: var(--foreground);
+  }
+  .langs {
+    display: flex;
+    border: var(--line-thin);
+  }
+  .langs a {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.6rem 0.8rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    border-inline-end: var(--line-thin);
+  }
+  .langs a:last-child {
+    border-inline-end: none;
+  }
+  .langs a:hover,
+  .langs a.active {
+    background: var(--foreground);
+    color: var(--background);
+  }
+  @media (min-width: 720px) {
+    .nav {
+      display: flex;
+    }
+  }
+</style>

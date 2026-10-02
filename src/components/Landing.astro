@@ -1,0 +1,33 @@
+---
+import type { Dictionary, Locale } from '../i18n/config';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from './Header.astro';
+import Hero from './Hero.astro';
+import Features from './Features.astro';
+import Stats from './Stats.astro';
+import Download from './Download.astro';
+import Quote from './Quote.astro';
+import FinalCta from './FinalCta.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+  autoDetect?: boolean;
+}
+
+const { locale, dict, autoDetect = false } = Astro.props;
+---
+
+<BaseLayout locale={locale} dict={dict} autoDetect={autoDetect}>
+  <Header locale={locale} t={dict.header} />
+  <main id="main">
+    <Hero locale={locale} t={dict.hero} />
+    <Features t={dict.features} />
+    <Stats t={dict.stats} />
+    <Download t={dict.download} />
+    <Quote t={dict.quote} />
+    <FinalCta t={dict.final} />
+  </main>
+  <Footer locale={locale} t={dict.footer} />
+</BaseLayout>

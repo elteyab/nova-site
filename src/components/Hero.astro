@@ -1,0 +1,67 @@
+---
+import type { Dictionary, Locale } from '../i18n/config';
+import { PLAY_URL } from '../i18n/config';
+
+interface Props {
+  locale: Locale;
+  t: Dictionary['hero'];
+}
+
+const { t } = Astro.props;
+---
+
+<section class="hero">
+  <div class="container">
+    <p class="mono-label kicker">{t.kicker}</p>
+    <h1 class="display-9xl">NOVA</h1>
+    <div class="rule" aria-hidden="true"><span class="square" aria-hidden="true"></span></div>
+    <p class="lead tagline">{t.tagline}</p>
+    <div class="ctas">
+      <a class="btn btn-primary" href={PLAY_URL}>{t.primaryCta}</a>
+      <a class="btn btn-outline" href="#features">{t.secondaryCta}</a>
+    </div>
+    <p class="mono-label note">{t.note}</p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: 5rem 6rem;
+  }
+  @media (min-width: 768px) {
+    .hero {
+      padding-block: 8rem 9rem;
+    }
+  }
+  .kicker {
+    margin: 0 0 1.5rem;
+  }
+  .rule {
+    border-top: var(--line-ultra);
+    margin: 2.5rem 0;
+    position: relative;
+  }
+  .square {
+    position: absolute;
+    top: -11px;
+    inset-inline-start: 0;
+    width: 18px;
+    height: 18px;
+    background: var(--background);
+    border: var(--line-medium);
+  }
+  .tagline {
+    max-width: 44rem;
+    margin: 0 0 2.5rem;
+  }
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .note {
+    margin: 0;
+    color: var(--muted-foreground);
+  }
+</style>

@@ -1,0 +1,103 @@
+---
+import type { Dictionary, Locale } from '../i18n/config';
+import { LOCALES, PLAY_URL, SITE_URL, localePath, pageUrl } from '../i18n/config';
+import '../styles/tokens.css';
+import '../styles/textures.css';
+import '../styles/global.css';
+import '@fontsource/playfair-display/400.css';
+import '@fontsource/playfair-display/400-italic.css';
+import '@fontsource/playfair-display/700.css';
+import '@fontsource/playfair-display/900.css';
+import '@fontsource/source-serif-4/400.css';
+import '@fontsource/source-serif-4/400-italic.css';
+import '@fontsource/source-serif-4/600.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+  /** Canonical path, e.g. / or /ar/ */
+  path?: string;
+  /** Hide from search engines (404 page). */
+  noindex?: boolean;
+  /** When true, first-time visitors are redirected to their browser locale. Root page only. */
+  autoDetect?: boolean;
+}
+
+const { locale, dict, path = localePath(locale), autoDetect = false, noindex = false } = Astro.props;
+const dir = LOCALES.find((l) => l.code === locale)?.dir ?? 'ltr';
+const canonical = new URL(path, SITE_URL).href;
+const ogImage = new URL('/og-cover.png', SITE_URL).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Nova',
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Android',
+  inLanguage: locale,
+  description: dict.meta.description,
+  url: canonical,
+  downloadUrl: PLAY_URL,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  author: { '@type': 'Organization', name: 'Nova', url: SITE_URL },
+};
+---
+
+<!doctype html>
+<html lang={locale} dir={dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{dict.meta.title}</title>
+    <meta name="description" content={dict.meta.description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {LOCALES.map((l) => (
+      <link rel="alternate" hreflang={l.code} href={pageUrl(l.code)} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={SITE_URL + '/'} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nova" />
+    <meta property="og:title" content={dict.meta.title} />
+    <meta property="og:description" content={dict.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={locale} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={dict.meta.title} />
+    <meta name="twitter:description" content={dict.meta.description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="generator" content={Astro.generator} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {autoDetect && (
+      <script is:inline>
+        (function () {
+          try {
+            if (localStorage.getItem('nova-locale')) return;
+            var langs = navigator.languages || [navigator.language];
+            for (var i = 0; i < langs.length; i++) {
+              var base = (langs[i] || '').split('-')[0].toLowerCase();
+              if (base === 'ar' || base === 'fr') {
+                localStorage.setItem('nova-locale', base);
+                window.location.replace('/' + base + '/');
+                return;
+              }
+            }
+            localStorage.setItem('nova-locale', 'en');
+          } catch (e) {}
+        })();
+      </script>
+    )}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{locale === 'ar' ? 'تخطَّ إلى المحتوى' : locale === 'fr' ? 'Aller au contenu' : 'Skip to content'}</a>
+    <slot />
+  </body>
+</html>

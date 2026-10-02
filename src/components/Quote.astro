@@ -1,0 +1,48 @@
+---
+import type { Dictionary } from '../i18n/config';
+
+interface Props {
+  t: Dictionary['quote'];
+}
+
+const { t } = Astro.props;
+---
+
+<section class="section quote" aria-label="quote">
+  <div class="container">
+    <p class="mark" aria-hidden="true">“</p>
+    <blockquote>
+      <p>{t.text}</p>
+    </blockquote>
+    <p class="mono-label author">{t.author}</p>
+  </div>
+</section>
+
+<style>
+  .quote blockquote {
+    margin: 0;
+    max-width: 56rem;
+  }
+  .mark {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.6;
+    margin: 0 0 1.5rem;
+    opacity: 0.12;
+    transition: opacity 100ms;
+  }
+  .quote:hover .mark {
+    opacity: 0.2;
+  }
+  .quote blockquote p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.75rem, 4.5vw, 3rem);
+    line-height: 1.2;
+    margin: 0 0 1.5rem;
+  }
+  .author {
+    margin: 0;
+    color: var(--muted-foreground);
+  }
+</style>

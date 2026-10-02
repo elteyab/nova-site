@@ -1,0 +1,81 @@
+---
+import type { Dictionary } from '../i18n/config';
+
+interface Props {
+  t: Dictionary['stats'];
+}
+
+const { t } = Astro.props;
+---
+
+<section class="stats inverted" aria-label="statistics">
+  <div class="veil texture-lines-inverted" aria-hidden="true"></div>
+  <div class="container grid">
+    {t.items.map((s) => (
+      <div class="stat">
+        <p class="value">{s.value}</p>
+        <p class="label">{s.label}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .stats {
+    background: var(--foreground);
+    color: var(--background);
+    position: relative;
+    overflow: hidden;
+  }
+  .veil {
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    pointer-events: none;
+  }
+  .grid {
+    position: relative;
+    display: grid;
+    padding-block: 5rem;
+  }
+  @media (min-width: 768px) {
+    .grid {
+      padding-block: 7rem;
+    }
+  }
+  .stat {
+    padding: 2rem 0;
+    border-bottom: 1px solid #ffffff;
+  }
+  .stat:last-child {
+    border-bottom: none;
+  }
+  .value {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(3rem, 7vw, 5rem);
+    line-height: 1;
+    margin: 0 0 0.75rem;
+  }
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+  @media (min-width: 860px) {
+    .grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat {
+      padding: 0 2rem;
+      border-bottom: none;
+      border-inline-start: 1px solid #ffffff;
+    }
+    .stat:first-child {
+      border-inline-start: none;
+      padding-inline-start: 0;
+    }
+  }
+</style>
