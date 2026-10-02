@@ -46,7 +46,8 @@ export interface Dictionary {
   };
   quote: { text: string; author: string };
   final: { title: string; body: string; cta: string };
-  footer: { tagline: string; rights: string; releases: string; source: string };
+  footer: { tagline: string; rights: string; releases: string; source: string; sitemap: string; top: string };
+  sitemapPage: { title: string; intro: string; pages: string; sections: string; links: string };
   notFound: { title: string; body: string; back: string };
 }
 

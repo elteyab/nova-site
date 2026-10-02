@@ -10,9 +10,9 @@ const { t } = Astro.props;
 
 <section class="section texture-grid" aria-labelledby="editor-title">
   <div class="container">
-    <p class="mono-label kicker">{t.kicker}</p>
-    <h2 class="section-title" id="editor-title">{t.title}</h2>
-    <div class="window" role="img" aria-label={t.filename}>
+    <p class="mono-label kicker reveal">{t.kicker}</p>
+    <h2 class="section-title reveal" id="editor-title">{t.title}</h2>
+    <div class="window reveal" role="img" aria-label={t.filename} style="--reveal-delay: 120ms">
       <div class="titlebar">
         <span class="filename">{t.filename}</span>
         <span class="pack">NOVA DARK</span>

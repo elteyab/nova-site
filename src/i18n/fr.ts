@@ -85,6 +85,15 @@ export const fr: Dictionary = {
     rights: 'Nova est un waqf pour Allah. Licence Waqf-1.0.',
     releases: 'Versions',
     source: 'Code source',
+    sitemap: 'Plan du site',
+    top: 'Haut de page',
+  },
+  sitemapPage: {
+    title: 'Plan du site.',
+    intro: 'Toutes les pages du site, dans toutes les langues.',
+    pages: 'Pages',
+    sections: 'Sections',
+    links: 'Liens',
   },
   notFound: {
     title: '404 — Rien ici.',

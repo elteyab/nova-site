@@ -1,0 +1,112 @@
+---
+import type { Dictionary, Locale } from '../i18n/config';
+import { LOCALES, PLAY_URL, RELEASES_URL, REPO_URL, localePath } from '../i18n/config';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
+const home = localePath(locale);
+---
+
+<BaseLayout locale={locale} dict={dict} path={localePath(locale, '/sitemap/')}>
+  <Header locale={locale} t={dict.header} />
+  <main id="main">
+    <div class="container wrap">
+      <p class="mono-label kicker">NOVA</p>
+      <h1 class="section-title">{dict.sitemapPage.title}</h1>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="lead">{dict.sitemapPage.intro}</p>
+      <div class="groups">
+        <section aria-label={dict.sitemapPage.pages}>
+          <h2 class="mono-label">00 — {dict.sitemapPage.pages}</h2>
+          <ul>
+            {LOCALES.map((l) => (
+              <li>
+                <a href={localePath(l.code)} hreflang={l.code}>
+                  {l.label} →
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+        <section aria-label={dict.sitemapPage.sections}>
+          <h2 class="mono-label">01 — {dict.sitemapPage.sections}</h2>
+          <ul>
+            <li><a href={`${home}#features`}>{dict.header.features} →</a></li>
+            <li><a href={`${home}#download`}>{dict.header.download} →</a></li>
+          </ul>
+        </section>
+        <section aria-label={dict.sitemapPage.links}>
+          <h2 class="mono-label">02 — {dict.sitemapPage.links}</h2>
+          <ul>
+            <li><a href={PLAY_URL} rel="noopener">{dict.download.playCta}</a></li>
+            <li><a href={RELEASES_URL} rel="noopener">{dict.download.apkCta}</a></li>
+            <li><a href={REPO_URL} rel="noopener">{dict.footer.source} →</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+  <Footer locale={locale} t={dict.footer} />
+</BaseLayout>
+
+<style>
+  .wrap {
+    padding-block: 5rem 7rem;
+  }
+  .kicker {
+    margin: 0 0 1rem;
+  }
+  .section-title {
+    margin-bottom: 2rem;
+  }
+  .rule {
+    border-top: var(--line-ultra);
+    margin-bottom: 2rem;
+  }
+  .lead {
+    margin: 0 0 3rem;
+    max-width: 44rem;
+  }
+  .groups {
+    display: grid;
+    gap: 0;
+    border: var(--line-medium);
+    max-width: 44rem;
+  }
+  section {
+    padding: 2rem;
+    border-bottom: var(--line-thin);
+  }
+  section:last-child {
+    border-bottom: none;
+  }
+  h2 {
+    margin: 0 0 1rem;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    margin-bottom: 0.75rem;
+  }
+  li:last-child {
+    margin-bottom: 0;
+  }
+  li a {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+  li a:hover {
+    text-decoration: underline;
+  }
+</style>

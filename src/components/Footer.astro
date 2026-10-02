@@ -17,6 +17,7 @@ const year = new Date().getFullYear();
       <a class="brand" href={localePath(locale)}>NOVA</a>
       <p class="tagline">{t.tagline}</p>
       <nav class="links" aria-label="footer">
+        <a href={localePath(locale, '/sitemap/')}>{t.sitemap} →</a>
         <a href={RELEASES_URL} rel="noopener">{t.releases} →</a>
         <a href={REPO_URL} rel="noopener">{t.source} →</a>
       </nav>

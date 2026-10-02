@@ -11,12 +11,21 @@ const { t } = Astro.props;
 <section class="stats inverted" aria-label="statistics">
   <div class="veil texture-lines-inverted" aria-hidden="true"></div>
   <div class="container grid">
-    {t.items.map((s) => (
-      <div class="stat">
-        <p class="value">{s.value}</p>
-        <p class="label">{s.label}</p>
-      </div>
-    ))}
+    {t.items.map((s, i) => {
+      const m = s.value.match(/^(\d+)(.*)$/);
+      return (
+        <div class="stat reveal" style={`--reveal-delay: ${i * 90}ms`}>
+          <p
+            class="value"
+            data-countup={m ? m[1] : undefined}
+            data-suffix={m && m[2] ? m[2] : undefined}
+          >
+            {s.value}
+          </p>
+          <p class="label">{s.label}</p>
+        </div>
+      );
+    })}
   </div>
 </section>
 

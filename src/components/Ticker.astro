@@ -1,0 +1,25 @@
+---
+const languages = [
+  'Python',
+  'Node.js',
+  'PHP',
+  'Go',
+  'Rust',
+  'Ruby',
+  'Java',
+  'Kotlin',
+  'Dart',
+  'C / C++',
+];
+---
+
+<div class="ticker" role="marquee" aria-label="Supported languages">
+  <div class="ticker-track">
+    {languages.map((l) => (
+      <span class="ticker-item">{l}</span>
+    ))}
+    {languages.map((l) => (
+      <span class="ticker-item" aria-hidden="true">{l}</span>
+    ))}
+  </div>
+</div>

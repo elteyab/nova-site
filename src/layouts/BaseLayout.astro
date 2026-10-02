@@ -4,6 +4,7 @@ import { LOCALES, PLAY_URL, SITE_URL, localePath, pageUrl } from '../i18n/config
 import '../styles/tokens.css';
 import '../styles/themes.css';
 import '../styles/textures.css';
+import '../styles/motion.css';
 import '../styles/global.css';
 import '@fontsource/playfair-display/400.css';
 import '@fontsource/playfair-display/400-italic.css';
@@ -78,6 +79,7 @@ const jsonLd = {
     <meta name="generator" content={Astro.generator} />
     <script is:inline>
       try {
+        document.documentElement.classList.add('js');
         var t = localStorage.getItem('nova-theme');
         if (t === 'nova-dark' || t === 'nova-light') document.documentElement.setAttribute('data-theme', t);
       } catch (e) {}

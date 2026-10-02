@@ -11,14 +11,14 @@ const { t } = Astro.props;
 
 <section class="section texture-diagonal" id="download" aria-labelledby="download-title">
   <div class="container">
-    <p class="mono-label kicker">{t.kicker}</p>
-    <h2 class="section-title" id="download-title">{t.title}</h2>
-    <p class="lead body">{t.body}</p>
-    <div class="ctas">
+    <p class="mono-label kicker reveal">{t.kicker}</p>
+    <h2 class="section-title reveal" id="download-title">{t.title}</h2>
+    <p class="lead body reveal">{t.body}</p>
+    <div class="ctas reveal" style="--reveal-delay: 120ms">
       <a class="btn btn-primary" href={PLAY_URL} rel="noopener">{t.playCta}</a>
       <a class="btn btn-outline" href={RELEASES_URL} rel="noopener">{t.apkCta}</a>
     </div>
-    <aside class="reqs" aria-label={t.reqTitle}>
+    <aside class="reqs reveal" style="--reveal-delay: 180ms" aria-label={t.reqTitle}>
       <p class="mono-label req-title">{t.reqTitle}</p>
       <ul>
         {t.reqs.map((r) => (

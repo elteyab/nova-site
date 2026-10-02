@@ -85,6 +85,15 @@ export const ar: Dictionary = {
     rights: 'نوفا وقف لله تعالى. مرخّصة برخصة الوقف 1.0.',
     releases: 'الإصدارات',
     source: 'الشيفرة المصدرية',
+    sitemap: 'خريطة الموقع',
+    top: 'عودة للأعلى',
+  },
+  sitemapPage: {
+    title: 'خريطة الموقع.',
+    intro: 'كل صفحات هذا الموقع، بجميع اللغات.',
+    pages: 'الصفحات',
+    sections: 'الأقسام',
+    links: 'الروابط',
   },
   notFound: {
     title: '404 — لا شيء هنا.',

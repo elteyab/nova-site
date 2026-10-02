@@ -10,11 +10,11 @@ const { t } = Astro.props;
 
 <section class="section texture-grid" id="features" aria-labelledby="features-title">
   <div class="container">
-    <p class="mono-label kicker">{t.kicker}</p>
-    <h2 class="section-title" id="features-title">{t.title}</h2>
+    <p class="mono-label kicker reveal">{t.kicker}</p>
+    <h2 class="section-title reveal" id="features-title">{t.title}</h2>
     <div class="grid">
-      {t.items.map((f) => (
-        <article class="card">
+      {t.items.map((f, i) => (
+        <article class="card reveal" style={`--reveal-delay: ${i * 70}ms`}>
           <h3>{f.title}</h3>
           <p>{f.body}</p>
         </article>

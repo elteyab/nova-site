@@ -85,6 +85,15 @@ export const en: Dictionary = {
     rights: 'Nova is a waqf for the sake of Allah. Licensed under the Waqf-1.0 license.',
     releases: 'Releases',
     source: 'Source code',
+    sitemap: 'Sitemap',
+    top: 'Back to top',
+  },
+  sitemapPage: {
+    title: 'Sitemap.',
+    intro: 'Every page on this site, in every language.',
+    pages: 'Pages',
+    sections: 'Sections',
+    links: 'Links',
   },
   notFound: {
     title: '404 — Nothing here.',

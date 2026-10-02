@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "sd.adaa.codeide",
+      "sha256_cert_fingerprints": [
+        "05:C6:40:26:BD:44:12:C8:3C:7C:97:C5:8F:A2:67:2C:1D:D8:46:6A:52:21:C0:F6:40:76:78:01:AE:2D:C4:3E"
+      ]
+    }
+  }
+]

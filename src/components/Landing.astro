@@ -3,6 +3,7 @@ import type { Dictionary, Locale } from '../i18n/config';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from './Header.astro';
 import Hero from './Hero.astro';
+import Ticker from './Ticker.astro';
 import Features from './Features.astro';
 import Stats from './Stats.astro';
 import CodePreview from './CodePreview.astro';
@@ -10,6 +11,7 @@ import Download from './Download.astro';
 import Quote from './Quote.astro';
 import FinalCta from './FinalCta.astro';
 import Footer from './Footer.astro';
+import BackToTop from './BackToTop.astro';
 
 interface Props {
   locale: Locale;
@@ -24,6 +26,7 @@ const { locale, dict, autoDetect = false } = Astro.props;
   <Header locale={locale} t={dict.header} />
   <main id="main">
     <Hero locale={locale} t={dict.hero} />
+    <Ticker />
     <Features t={dict.features} />
     <Stats t={dict.stats} />
     <CodePreview t={dict.editor} />
@@ -32,4 +35,78 @@ const { locale, dict, autoDetect = false } = Astro.props;
     <FinalCta t={dict.final} />
   </main>
   <Footer locale={locale} t={dict.footer} />
+  <BackToTop label={dict.footer.top} />
 </BaseLayout>
+
+<script is:inline>
+  (function () {
+    try {
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* Scroll reveal */
+      var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+      if ('IntersectionObserver' in window && !reduce) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+              io.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        reveals.forEach(function (el) { io.observe(el); });
+      } else {
+        reveals.forEach(function (el) { el.classList.add('visible'); });
+      }
+
+      /* Stat count-up (final value stays in HTML for no-JS) */
+      var counters = Array.prototype.slice.call(document.querySelectorAll('[data-countup]'));
+      function countUp(el) {
+        var target = parseInt(el.getAttribute('data-countup'), 10);
+        var suffix = el.getAttribute('data-suffix') || '';
+        if (isNaN(target)) return;
+        if (reduce) {
+          el.textContent = target + suffix;
+          return;
+        }
+        var start = null;
+        var dur = 1200;
+        function frame(now) {
+          if (!start) start = now;
+          var p = Math.min((now - start) / dur, 1);
+          var eased = 1 - Math.pow(2, -10 * p);
+          if (p === 1) eased = 1;
+          el.textContent = Math.round(target * eased) + suffix;
+          if (p < 1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      }
+      if ('IntersectionObserver' in window) {
+        var cio = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              countUp(e.target);
+              cio.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.4 });
+        counters.forEach(function (el) { cio.observe(el); });
+      } else {
+        counters.forEach(countUp);
+      }
+
+      /* Back to top */
+      var top = document.getElementById('to-top');
+      if (top) {
+        function toggle() {
+          top.classList.toggle('show', window.scrollY > 600);
+        }
+        window.addEventListener('scroll', toggle, { passive: true });
+        toggle();
+        top.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+        });
+      }
+    } catch (e) {}
+  })();
+</script>
