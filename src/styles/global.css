@@ -31,8 +31,8 @@ body::before {
     0deg,
     transparent,
     transparent 1px,
-    #000 1px,
-    #000 2px
+    var(--texture-ink) 1px,
+    var(--texture-ink) 2px
   );
   background-size: 100% 4px;
   opacity: 0.015;
@@ -137,14 +137,14 @@ h3 {
 }
 
 .btn-primary {
-  background: var(--foreground);
-  color: var(--background);
-  border: 2px solid var(--foreground);
+  background: var(--accent);
+  color: var(--on-accent);
+  border: 2px solid var(--accent);
 }
 
 .btn-primary:hover {
-  background: var(--background);
-  color: var(--foreground);
+  background: transparent;
+  color: var(--accent);
 }
 
 .btn-outline {
@@ -159,29 +159,34 @@ h3 {
 }
 
 .btn-inverted {
-  background: var(--background);
-  color: var(--foreground);
-  border: 2px solid var(--background);
+  background: var(--inverted-fg);
+  color: var(--inverted-bg);
+  border: 2px solid var(--inverted-fg);
 }
 
 .btn-inverted:hover {
   background: transparent;
-  color: var(--background);
+  color: var(--inverted-fg);
 }
 
 .btn-outline-inverted {
   background: transparent;
-  color: var(--background);
-  border: 2px solid var(--background);
+  color: var(--inverted-fg);
+  border: 2px solid var(--inverted-fg);
 }
 
 .btn-outline-inverted:hover {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--inverted-fg);
+  color: var(--inverted-bg);
 }
 
 a {
   color: inherit;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 /* Accessibility: required focus states */

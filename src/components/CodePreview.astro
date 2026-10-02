@@ -1,0 +1,111 @@
+---
+import type { Dictionary } from '../i18n/config';
+
+interface Props {
+  t: Dictionary['editor'];
+}
+
+const { t } = Astro.props;
+---
+
+<section class="section texture-grid" aria-labelledby="editor-title">
+  <div class="container">
+    <p class="mono-label kicker">{t.kicker}</p>
+    <h2 class="section-title" id="editor-title">{t.title}</h2>
+    <div class="window" role="img" aria-label={t.filename}>
+      <div class="titlebar">
+        <span class="filename">{t.filename}</span>
+        <span class="pack">NOVA DARK</span>
+      </div>
+      <pre class="code"><code><span class="ln">1</span><span class="c"># runs on your phone — no server</span>
+<span class="ln">2</span><span class="k">from</span> nova <span class="k">import</span> <span class="t">Device</span>
+<span class="ln">3</span>
+<span class="ln">4</span><span class="k">def</span> <span class="f">main</span>(device: <span class="t">Device</span>) <span class="k">-&gt;</span> <span class="v">None</span>:
+<span class="ln">5</span>    app = device.<span class="f">open</span>(<span class="s">"hello.py"</span>)
+<span class="ln">6</span>    app.<span class="f">run</span>(timeout=<span class="n">30</span>)
+<span class="ln">7</span>    <span class="f">print</span>(<span class="s">f"done in {"{app.elapsed}"}s"</span>)
+<span class="ln">8</span>
+<span class="ln">9</span><span class="f">main</span>(<span class="t">Device</span>.<span class="f">local</span>())</code></pre>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Fixed Nova Dark editor colors (NovaSyntax tokens) — identical in every site theme */
+  .kicker {
+    margin: 0 0 1rem;
+  }
+  .section-title {
+    margin-bottom: 3rem;
+  }
+  .window {
+    border: var(--line-medium);
+    background: #1e1e1e;
+    max-width: 44rem;
+  }
+  .titlebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid #333333;
+    padding: 0.75rem 1.25rem;
+  }
+  .filename,
+  .pack {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .filename {
+    color: #d4d4d4;
+  }
+  .pack {
+    color: #007acc;
+    border: 1px solid #007acc;
+    padding: 0.15rem 0.5rem;
+  }
+  .code {
+    margin: 0;
+    padding: 1.5rem 0;
+    overflow-x: auto;
+  }
+  .code code {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    line-height: 1.8;
+    color: #d4d4d4;
+  }
+  .ln {
+    display: inline-block;
+    width: 3rem;
+    text-align: end;
+    margin-inline-end: 1.25rem;
+    color: #858585;
+    user-select: none;
+  }
+  .k {
+    color: #a78bfa;
+    font-weight: bold;
+  }
+  .t {
+    color: #4ec9b0;
+  }
+  .f {
+    color: #9fcaff;
+  }
+  .s {
+    color: #ce9178;
+  }
+  .n {
+    color: #61dac1;
+  }
+  .v {
+    color: #9cdcfe;
+  }
+  .c {
+    color: #858585;
+    font-style: italic;
+  }
+</style>

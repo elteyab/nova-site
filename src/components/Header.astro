@@ -17,20 +17,57 @@ const { locale, t } = Astro.props;
       <a href="#features">{t.features}</a>
       <a href="#download">{t.download}</a>
     </nav>
-    <div class="langs" role="group" aria-label={t.langLabel}>
-      {LOCALES.map((l) => (
-        <a
-          href={localePath(l.code)}
-          hreflang={l.code}
-          aria-current={l.code === locale ? 'page' : undefined}
-          class:list={[{ active: l.code === locale }]}
-        >
-          {l.code.toUpperCase()}
-        </a>
-      ))}
+    <div class="controls">
+      <div class="themes" role="group" aria-label={t.themeLabel}>
+        <button type="button" data-theme-btn="mono" aria-pressed="true">MONO</button>
+        <button type="button" data-theme-btn="nova-dark" aria-pressed="false">DARK</button>
+        <button type="button" data-theme-btn="nova-light" aria-pressed="false">LIGHT</button>
+      </div>
+      <div class="langs" role="group" aria-label={t.langLabel}>
+        {LOCALES.map((l) => (
+          <a
+            href={localePath(l.code)}
+            hreflang={l.code}
+            aria-current={l.code === locale ? 'page' : undefined}
+            class:list={[{ active: l.code === locale }]}
+          >
+            {l.code.toUpperCase()}
+          </a>
+        ))}
+      </div>
     </div>
   </div>
 </header>
+
+<script is:inline>
+  (function () {
+    try {
+      var root = document.documentElement;
+      var btns = Array.prototype.slice.call(document.querySelectorAll('[data-theme-btn]'));
+      function apply(t) {
+        root.setAttribute('data-theme', t);
+        try {
+          localStorage.setItem('nova-theme', t);
+        } catch (e) {}
+        btns.forEach(function (b) {
+          var on = b.getAttribute('data-theme-btn') === t;
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          b.classList.toggle('active', on);
+        });
+      }
+      var saved = null;
+      try {
+        saved = localStorage.getItem('nova-theme');
+      } catch (e) {}
+      apply(saved === 'nova-dark' || saved === 'nova-light' ? saved : 'mono');
+      btns.forEach(function (b) {
+        b.addEventListener('click', function () {
+          apply(b.getAttribute('data-theme-btn'));
+        });
+      });
+    } catch (e) {}
+  })();
+</script>
 
 <style>
   .site-header {
@@ -41,8 +78,10 @@ const { locale, t } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
     min-height: 72px;
+    padding-block: 0.5rem;
   }
   .brand {
     font-family: var(--font-display);
@@ -76,11 +115,18 @@ const { locale, t } = Astro.props;
   .nav a:hover {
     border-bottom-color: var(--foreground);
   }
-  .langs {
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .langs,
+  .themes {
     display: flex;
     border: var(--line-thin);
   }
-  .langs a {
+  .langs a,
+  .themes button {
     font-family: var(--font-mono);
     font-size: 0.75rem;
     padding: 0.6rem 0.8rem;
@@ -88,15 +134,26 @@ const { locale, t } = Astro.props;
     display: inline-flex;
     align-items: center;
     text-decoration: none;
+    color: var(--foreground);
+    background: transparent;
+    border: none;
     border-inline-end: var(--line-thin);
+    cursor: pointer;
   }
-  .langs a:last-child {
+  .langs a:last-child,
+  .themes button:last-child {
     border-inline-end: none;
   }
   .langs a:hover,
-  .langs a.active {
+  .langs a.active,
+  .themes button:hover,
+  .themes button.active {
     background: var(--foreground);
     color: var(--background);
+  }
+  .themes button:focus-visible {
+    outline: 3px solid var(--foreground);
+    outline-offset: 3px;
   }
   @media (min-width: 720px) {
     .nav {

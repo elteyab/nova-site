@@ -6,7 +6,7 @@ export const en: Dictionary = {
     description:
       'Nova is a code editor that runs on your Android phone and executes code for real on the device: Python, JavaScript, PHP, Go, Rust, Ruby, Java, Kotlin, Dart, C/C++. Free forever.',
   },
-  header: { features: 'Features', download: 'Download', langLabel: 'Language' },
+  header: { features: 'Features', download: 'Download', langLabel: 'Language', themeLabel: 'Theme' },
   hero: {
     kicker: 'N° 01 — The phone is a real dev machine',
     tagline:
@@ -65,6 +65,11 @@ export const en: Dictionary = {
       'Internet connection on first launch only (runtime download)',
       '~70 MB for the slim runtime, ~283 MB for the full offline pack',
     ],
+  },
+  editor: {
+    kicker: 'The editor',
+    title: 'Nova Dark, straight from the app.',
+    filename: 'main.py — Nova Dark',
   },
   quote: {
     text: 'The phone is not a viewer. It is the machine.',

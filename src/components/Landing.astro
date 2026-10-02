@@ -5,6 +5,7 @@ import Header from './Header.astro';
 import Hero from './Hero.astro';
 import Features from './Features.astro';
 import Stats from './Stats.astro';
+import CodePreview from './CodePreview.astro';
 import Download from './Download.astro';
 import Quote from './Quote.astro';
 import FinalCta from './FinalCta.astro';
@@ -25,6 +26,7 @@ const { locale, dict, autoDetect = false } = Astro.props;
     <Hero locale={locale} t={dict.hero} />
     <Features t={dict.features} />
     <Stats t={dict.stats} />
+    <CodePreview t={dict.editor} />
     <Download t={dict.download} />
     <Quote t={dict.quote} />
     <FinalCta t={dict.final} />

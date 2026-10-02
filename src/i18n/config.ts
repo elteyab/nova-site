@@ -24,7 +24,7 @@ export interface Stat {
 
 export interface Dictionary {
   meta: { title: string; description: string };
-  header: { features: string; download: string; langLabel: string };
+  header: { features: string; download: string; langLabel: string; themeLabel: string };
   hero: {
     kicker: string;
     tagline: string;
@@ -34,6 +34,7 @@ export interface Dictionary {
   };
   features: { kicker: string; title: string; items: Feature[] };
   stats: { items: Stat[] };
+  editor: { kicker: string; title: string; filename: string };
   download: {
     kicker: string;
     title: string;

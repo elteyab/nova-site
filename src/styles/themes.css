@@ -1,0 +1,56 @@
+/* Site themes derived from the app's own tokens
+   (lib/src/features/editor/theme/nova_tokens.dart + builtin_packs.dart).
+   [data-theme="mono"] is the default (tokens.css values) — no overrides. */
+
+/* ——— Nova Dark ———
+   surface #131313 · on-surface #E5E2E1 · primary #007ACC
+   editor chrome #1E1E1E / #D4D4D4 · border role #333333 stepped up for line work */
+[data-theme='nova-dark'] {
+  --background: #131313;
+  --foreground: #e5e2e1;
+  --muted: #1b1b1c;
+  --muted-foreground: #c0c7d3;
+  --accent: #007acc;
+  --on-accent: #ffffff;
+  --border: #e5e2e1;
+  --border-light: #404751;
+  --card: #1b1b1c;
+  --card-foreground: #e5e2e1;
+  --inverted-bg: #0e0e0e;
+  --inverted-fg: #e5e2e1;
+  --texture-ink: #ffffff;
+}
+
+[data-theme='nova-dark'] .texture-grid {
+  background-image:
+    linear-gradient(#ffffff08 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff08 1px, transparent 1px);
+}
+
+[data-theme='nova-dark'] .texture-diagonal {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 40px,
+    #ffffff08 40px,
+    #ffffff08 42px
+  );
+}
+
+/* ——— Nova Light ———
+   surface #FAFAF8 · on-surface #303030 · primary #0061A4 */
+[data-theme='nova-light'] {
+  --background: #fafaf8;
+  --foreground: #303030;
+  --muted: #f3f0eb;
+  --muted-foreground: #4c5158;
+  --accent: #0061a4;
+  --on-accent: #ffffff;
+  --border: #303030;
+  --border-light: #d5d2cc;
+  --card: #ffffff;
+  --card-foreground: #303030;
+  --inverted-bg: #131313;
+  --inverted-fg: #e5e2e1;
+  --texture-ink: #000000;
+}

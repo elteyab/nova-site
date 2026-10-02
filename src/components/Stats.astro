@@ -22,8 +22,8 @@ const { t } = Astro.props;
 
 <style>
   .stats {
-    background: var(--foreground);
-    color: var(--background);
+    background: var(--inverted-bg);
+    color: var(--inverted-fg);
     position: relative;
     overflow: hidden;
   }
@@ -45,7 +45,7 @@ const { t } = Astro.props;
   }
   .stat {
     padding: 2rem 0;
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid var(--inverted-fg);
   }
   .stat:last-child {
     border-bottom: none;
@@ -71,7 +71,7 @@ const { t } = Astro.props;
     .stat {
       padding: 0 2rem;
       border-bottom: none;
-      border-inline-start: 1px solid #ffffff;
+      border-inline-start: 1px solid var(--inverted-fg);
     }
     .stat:first-child {
       border-inline-start: none;

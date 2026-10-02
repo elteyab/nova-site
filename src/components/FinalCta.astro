@@ -20,10 +20,10 @@ const { t } = Astro.props;
 
 <style>
   .final {
-    background: var(--foreground);
-    color: var(--background);
+    background: var(--inverted-bg);
+    color: var(--inverted-fg);
     border-top: var(--line-ultra);
-    border-top-color: var(--foreground);
+    border-top-color: var(--inverted-bg);
     position: relative;
     overflow: hidden;
   }
@@ -47,7 +47,7 @@ const { t } = Astro.props;
     }
   }
   .body {
-    color: var(--background);
+    color: var(--inverted-fg);
     margin: 1.5rem 0 2.5rem;
   }
 </style>

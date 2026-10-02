@@ -2,6 +2,7 @@
 import type { Dictionary, Locale } from '../i18n/config';
 import { LOCALES, PLAY_URL, SITE_URL, localePath, pageUrl } from '../i18n/config';
 import '../styles/tokens.css';
+import '../styles/themes.css';
 import '../styles/textures.css';
 import '../styles/global.css';
 import '@fontsource/playfair-display/400.css';
@@ -75,6 +76,12 @@ const jsonLd = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="generator" content={Astro.generator} />
+    <script is:inline>
+      try {
+        var t = localStorage.getItem('nova-theme');
+        if (t === 'nova-dark' || t === 'nova-light') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    </script>
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     {autoDetect && (
       <script is:inline>

@@ -11,6 +11,13 @@
   --card: #ffffff;
   --card-foreground: #000000;
 
+  /* App-driven roles (overridden per theme in themes.css) */
+  --accent: #000000;
+  --on-accent: #ffffff;
+  --inverted-bg: #000000;
+  --inverted-fg: #ffffff;
+  --texture-ink: #000000;
+
   --font-display: 'Playfair Display', Georgia, serif;
   --font-body: 'Source Serif 4', Georgia, serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
