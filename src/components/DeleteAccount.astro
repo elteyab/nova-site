@@ -1,6 +1,6 @@
 ---
 import type { Dictionary, Locale } from '../i18n/config';
-import { CONTACT_EMAIL, DELETE_ACCOUNT_PATH, localePath } from '../i18n/config';
+import { DELETE_ACCOUNT_EMAIL, DELETE_ACCOUNT_PATH, localePath } from '../i18n/config';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
@@ -19,7 +19,7 @@ const subjects: Record<Locale, string> = {
   ar: 'حذف حساب نوفا',
   fr: 'Suppression du compte Nova',
 };
-const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subjects[locale])}`;
+const mailto = `mailto:${DELETE_ACCOUNT_EMAIL}?subject=${encodeURIComponent(subjects[locale])}`;
 ---
 
 <BaseLayout
@@ -51,7 +51,7 @@ const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subjects[lo
           <h2 class="block-title"><span class="num">02</span>{t.webTitle}</h2>
           <p>{t.webBody}</p>
           <p class="hint">{t.webEmailLabel}</p>
-          <a class="mail" href={mailto}>{CONTACT_EMAIL} →</a>
+          <a class="mail" href={mailto}>{DELETE_ACCOUNT_EMAIL} →</a>
         </section>
 
         <section class="block">
@@ -78,14 +78,14 @@ const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subjects[lo
         <section class="block">
           <h2 class="block-title"><span class="num">06</span>{t.contactTitle}</h2>
           <p>{t.contactBody}</p>
-          <a class="mail" href={mailto}>{CONTACT_EMAIL} →</a>
+          <a class="mail" href={mailto}>{DELETE_ACCOUNT_EMAIL} →</a>
         </section>
       </div>
 
       <a class="btn btn-outline back" href={home}>{t.back}</a>
     </div>
   </main>
-  <Footer locale={locale} t={dict.footer} />
+  <Footer locale={locale} t={dict.footer} hideContact hideProject />
 </BaseLayout>
 
 <style>

@@ -5,9 +5,13 @@ import { RELEASES_URL, REPO_URL, PERSONAL_URL, CONTACT_EMAIL, DELETE_ACCOUNT_PAT
 interface Props {
   locale: Locale;
   t: Dictionary['footer'];
+  /** Hide the general contact block (used on policy pages that carry their own contact). */
+  hideContact?: boolean;
+  /** Hide the releases/source links (used on policy pages). */
+  hideProject?: boolean;
 }
 
-const { locale, t } = Astro.props;
+const { locale, t, hideContact = false, hideProject = false } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
@@ -18,17 +22,23 @@ const year = new Date().getFullYear();
       <p class="tagline">{t.tagline}</p>
       <nav class="links" aria-label="footer">
         <a href={localePath(locale, '/sitemap/')}>{t.sitemap} →</a>
-        <a href={RELEASES_URL} rel="noopener">{t.releases} →</a>
-        <a href={REPO_URL} rel="noopener">{t.source} →</a>
+        {!hideProject && (
+          <>
+            <a href={RELEASES_URL} rel="noopener">{t.releases} →</a>
+            <a href={REPO_URL} rel="noopener">{t.source} →</a>
+          </>
+        )}
         <a href={localePath(locale, DELETE_ACCOUNT_PATH)}>{t.deleteAccount} →</a>
       </nav>
-      <div class="contact">
-        <p class="mono-label contact-title">{t.contact}</p>
-        <nav class="links" aria-label={t.contact}>
-          <a href={PERSONAL_URL} rel="noopener">{t.website} →</a>
-          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
-        </nav>
-      </div>
+      {!hideContact && (
+        <div class="contact">
+          <p class="mono-label contact-title">{t.contact}</p>
+          <nav class="links" aria-label={t.contact}>
+            <a href={PERSONAL_URL} rel="noopener">{t.website} →</a>
+            <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+          </nav>
+        </div>
+      )}
     </div>
     <div class="bottom">
       <p class="mono-label">© {year} NOVA</p>

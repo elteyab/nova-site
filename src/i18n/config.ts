@@ -11,6 +11,12 @@ export const CONTACT_EMAIL = 'elteyab@smart.sd';
 export const DELETE_ACCOUNT_PATH = '/delete-account/';
 export const DELETE_ACCOUNT_URL = new URL(DELETE_ACCOUNT_PATH, SITE_URL).href;
 
+/// Developer shown on the Google Play listing (organization name).
+export const DEVELOPER_NAME = 'TheDeveloper SD';
+
+/// Address users write to in order to request account & data deletion.
+export const DELETE_ACCOUNT_EMAIL = 'nova@smart.sd';
+
 export type Locale = 'en' | 'ar' | 'fr';
 
 export const LOCALES: { code: Locale; label: string; dir: 'ltr' | 'rtl' }[] = [

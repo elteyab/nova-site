@@ -1,4 +1,5 @@
 import type { Dictionary } from './config';
+import { DELETE_ACCOUNT_EMAIL, DEVELOPER_NAME } from './config';
 
 export const fr: Dictionary = {
   meta: {
@@ -108,7 +109,7 @@ export const fr: Dictionary = {
     title: 'Supprimez votre compte Nova et vos données.',
     updated: 'Dernière mise à jour : 18 octobre 2026',
     intro:
-      'Cette page explique comment demander la suppression de votre compte Nova et des données associées. Nova (identifiant sd.adaa.codeide) est développé par Elteyab (Tayeb Ali), le développeur indiqué sur la fiche Google Play.',
+      `Cette page explique comment supprimer votre compte Nova et les données associées. Nova (identifiant sd.adaa.codeide) est publié par ${DEVELOPER_NAME} sur Google Play.`,
     inAppTitle: 'Option 1 — Supprimer depuis l’application (recommandé)',
     inAppBody:
       'Si Nova est encore installé, vous pouvez supprimer votre compte directement dans l’application. Votre compte de connexion est supprimé immédiatement.',
@@ -122,7 +123,7 @@ export const fr: Dictionary = {
     webBody:
       'Si vous n’avez plus Nova installé, écrivez-nous depuis l’adresse liée à votre compte et nous le supprimerons, normalement sous 30 jours.',
     webEmailLabel:
-      'Envoyez la demande à elteyab@smart.sd avec l’objet « Suppression du compte Nova ».',
+      `Envoyez un e-mail à ${DELETE_ACCOUNT_EMAIL} avec l’objet « Suppression du compte Nova ».`,
     deletedTitle: 'Données supprimées',
     deletedBody:
       'Lors de la suppression de votre compte, les données suivantes sont définitivement effacées :',
@@ -144,7 +145,8 @@ export const fr: Dictionary = {
     localBody:
       'Vos projets et fichiers n’existent que sur votre téléphone et ne sont jamais envoyés à nos serveurs. Supprimer votre compte n’y touche pas ; désinstaller Nova supprime l’application, son runtime et ces fichiers locaux.',
     contactTitle: 'Contact',
-    contactBody: 'Une question sur la suppression ? Écrivez à elteyab@smart.sd.',
+    contactBody:
+      `Pour toute question sur la suppression du compte ou des données, contactez ${DELETE_ACCOUNT_EMAIL}.`,
     back: '← Retour à l’accueil',
   },
 };

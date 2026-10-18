@@ -1,4 +1,5 @@
 import type { Dictionary } from './config';
+import { DELETE_ACCOUNT_EMAIL, DEVELOPER_NAME } from './config';
 
 export const en: Dictionary = {
   meta: {
@@ -108,7 +109,7 @@ export const en: Dictionary = {
     title: 'Delete your Nova account and data.',
     updated: 'Last updated: 18 October 2026',
     intro:
-      'This page explains how to request deletion of your Nova account and the data associated with it. Nova (app ID sd.adaa.codeide) is developed by Elteyab (Tayeb Ali), the developer shown on the Google Play store page.',
+      `This page explains how to delete your Nova account and the data associated with it. Nova (app ID sd.adaa.codeide) is published by ${DEVELOPER_NAME} on Google Play.`,
     inAppTitle: 'Option 1 — Delete from inside the app (recommended)',
     inAppBody:
       'If Nova is still installed on your phone, you can delete your account directly in the app. Your sign-in account is deleted immediately.',
@@ -122,7 +123,7 @@ export const en: Dictionary = {
     webBody:
       'If you no longer have Nova installed, email us from the address linked to your account and we will delete it for you, normally within 30 days.',
     webEmailLabel:
-      'Send the request to elteyab@smart.sd with the subject “Nova account deletion”.',
+      `Send an email to ${DELETE_ACCOUNT_EMAIL} with the subject “Nova account deletion”.`,
     deletedTitle: 'Data that is deleted',
     deletedBody:
       'When your account is deleted, the following data is permanently removed:',
@@ -143,7 +144,8 @@ export const en: Dictionary = {
     localBody:
       'Your projects and files live only on your phone and are never uploaded to our servers. Deleting your account does not touch them; uninstalling Nova removes the app, its runtime, and those local files.',
     contactTitle: 'Contact',
-    contactBody: 'Questions about deletion? Email elteyab@smart.sd.',
+    contactBody:
+      `For any question about account or data deletion, contact ${DELETE_ACCOUNT_EMAIL}.`,
     back: '← Back to home',
   },
 };
