@@ -1,6 +1,6 @@
 ---
 import type { Dictionary, Locale } from '../i18n/config';
-import { LOCALES, PLAY_URL, RELEASES_URL, REPO_URL, localePath } from '../i18n/config';
+import { LOCALES, PLAY_URL, RELEASES_URL, REPO_URL, DELETE_ACCOUNT_PATH, localePath } from '../i18n/config';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
@@ -48,6 +48,7 @@ const home = localePath(locale);
             <li><a href={PLAY_URL} rel="noopener">{dict.download.playCta}</a></li>
             <li><a href={RELEASES_URL} rel="noopener">{dict.download.apkCta}</a></li>
             <li><a href={REPO_URL} rel="noopener">{dict.footer.source} →</a></li>
+            <li><a href={localePath(locale, DELETE_ACCOUNT_PATH)}>{dict.footer.deleteAccount} →</a></li>
           </ul>
         </section>
       </div>

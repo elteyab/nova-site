@@ -6,6 +6,11 @@ export const SITE_URL = 'https://nova.elteyab.sd';
 export const PERSONAL_URL = 'https://elteyab.sd';
 export const CONTACT_EMAIL = 'elteyab@smart.sd';
 
+/// Public page the user can visit to request deletion of their Nova account
+/// and data. This is the URL submitted to the Google Play Data Safety form.
+export const DELETE_ACCOUNT_PATH = '/delete-account/';
+export const DELETE_ACCOUNT_URL = new URL(DELETE_ACCOUNT_PATH, SITE_URL).href;
+
 export type Locale = 'en' | 'ar' | 'fr';
 
 export const LOCALES: { code: Locale; label: string; dir: 'ltr' | 'rtl' }[] = [
@@ -48,9 +53,32 @@ export interface Dictionary {
   };
   quote: { text: string; author: string };
   final: { title: string; body: string; cta: string };
-  footer: { tagline: string; rights: string; releases: string; source: string; sitemap: string; top: string; contact: string; website: string };
+  footer: { tagline: string; rights: string; releases: string; source: string; sitemap: string; top: string; contact: string; website: string; deleteAccount: string };
   sitemapPage: { title: string; intro: string; pages: string; sections: string; links: string };
   notFound: { title: string; body: string; back: string };
+  deleteAccount: {
+    kicker: string;
+    title: string;
+    updated: string;
+    intro: string;
+    inAppTitle: string;
+    inAppBody: string;
+    inAppSteps: string[];
+    webTitle: string;
+    webBody: string;
+    webEmailLabel: string;
+    deletedTitle: string;
+    deletedBody: string;
+    deletedItems: string[];
+    retainedTitle: string;
+    retainedBody: string;
+    retainedItems: string[];
+    localTitle: string;
+    localBody: string;
+    contactTitle: string;
+    contactBody: string;
+    back: string;
+  };
 }
 
 export function localePath(locale: Locale, path = '/'): string {

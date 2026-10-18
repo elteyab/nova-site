@@ -25,9 +25,15 @@ interface Props {
   noindex?: boolean;
   /** When true, first-time visitors are redirected to their browser locale. Root page only. */
   autoDetect?: boolean;
+  /** Override the document title (defaults to dict.meta.title). */
+  title?: string;
+  /** Override the meta description (defaults to dict.meta.description). */
+  description?: string;
 }
 
-const { locale, dict, path = localePath(locale), autoDetect = false, noindex = false } = Astro.props;
+const { locale, dict, path = localePath(locale), autoDetect = false, noindex = false, title, description } = Astro.props;
+const pageTitle = title ?? dict.meta.title;
+const pageDescription = description ?? dict.meta.description;
 const dir = LOCALES.find((l) => l.code === locale)?.dir ?? 'ltr';
 const canonical = new URL(path, SITE_URL).href;
 const ogImage = new URL('/og-cover.png', SITE_URL).href;
@@ -39,7 +45,7 @@ const jsonLd = {
   applicationCategory: 'DeveloperApplication',
   operatingSystem: 'Android',
   inLanguage: locale,
-  description: dict.meta.description,
+  description: pageDescription,
   url: canonical,
   downloadUrl: PLAY_URL,
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -52,8 +58,8 @@ const jsonLd = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{dict.meta.title}</title>
-    <meta name="description" content={dict.meta.description} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
     {LOCALES.map((l) => (
@@ -63,14 +69,14 @@ const jsonLd = {
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Nova" />
-    <meta property="og:title" content={dict.meta.title} />
-    <meta property="og:description" content={dict.meta.description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:locale" content={locale} />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={dict.meta.title} />
-    <meta name="twitter:description" content={dict.meta.description} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={ogImage} />
 
     <meta name="theme-color" content="#000000" />

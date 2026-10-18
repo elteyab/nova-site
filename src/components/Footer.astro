@@ -1,6 +1,6 @@
 ---
 import type { Dictionary, Locale } from '../i18n/config';
-import { RELEASES_URL, REPO_URL, PERSONAL_URL, CONTACT_EMAIL, localePath } from '../i18n/config';
+import { RELEASES_URL, REPO_URL, PERSONAL_URL, CONTACT_EMAIL, DELETE_ACCOUNT_PATH, localePath } from '../i18n/config';
 
 interface Props {
   locale: Locale;
@@ -20,6 +20,7 @@ const year = new Date().getFullYear();
         <a href={localePath(locale, '/sitemap/')}>{t.sitemap} →</a>
         <a href={RELEASES_URL} rel="noopener">{t.releases} →</a>
         <a href={REPO_URL} rel="noopener">{t.source} →</a>
+        <a href={localePath(locale, DELETE_ACCOUNT_PATH)}>{t.deleteAccount} →</a>
       </nav>
       <div class="contact">
         <p class="mono-label contact-title">{t.contact}</p>

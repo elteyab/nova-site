@@ -1,0 +1,190 @@
+---
+import type { Dictionary, Locale } from '../i18n/config';
+import { CONTACT_EMAIL, DELETE_ACCOUNT_PATH, localePath } from '../i18n/config';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
+const t = dict.deleteAccount;
+const home = localePath(locale);
+
+const subjects: Record<Locale, string> = {
+  en: 'Nova account deletion',
+  ar: 'حذف حساب نوفا',
+  fr: 'Suppression du compte Nova',
+};
+const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subjects[locale])}`;
+---
+
+<BaseLayout
+  locale={locale}
+  dict={dict}
+  path={localePath(locale, DELETE_ACCOUNT_PATH)}
+  title={`${t.title} — Nova`}
+  description={t.intro}
+>
+  <Header locale={locale} t={dict.header} />
+  <main id="main">
+    <div class="container wrap">
+      <p class="mono-label kicker">{t.kicker}</p>
+      <h1 class="section-title">{t.title}</h1>
+      <p class="mono-label updated">{t.updated}</p>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="lead intro">{t.intro}</p>
+
+      <div class="blocks">
+        <section class="block">
+          <h2 class="block-title"><span class="num">01</span>{t.inAppTitle}</h2>
+          <p>{t.inAppBody}</p>
+          <ol class="steps">
+            {t.inAppSteps.map((step) => <li>{step}</li>)}
+          </ol>
+        </section>
+
+        <section class="block">
+          <h2 class="block-title"><span class="num">02</span>{t.webTitle}</h2>
+          <p>{t.webBody}</p>
+          <p class="hint">{t.webEmailLabel}</p>
+          <a class="mail" href={mailto}>{CONTACT_EMAIL} →</a>
+        </section>
+
+        <section class="block">
+          <h2 class="block-title"><span class="num">03</span>{t.deletedTitle}</h2>
+          <p>{t.deletedBody}</p>
+          <ul class="items">
+            {t.deletedItems.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+
+        <section class="block">
+          <h2 class="block-title"><span class="num">04</span>{t.retainedTitle}</h2>
+          <p>{t.retainedBody}</p>
+          <ul class="items">
+            {t.retainedItems.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+
+        <section class="block">
+          <h2 class="block-title"><span class="num">05</span>{t.localTitle}</h2>
+          <p>{t.localBody}</p>
+        </section>
+
+        <section class="block">
+          <h2 class="block-title"><span class="num">06</span>{t.contactTitle}</h2>
+          <p>{t.contactBody}</p>
+          <a class="mail" href={mailto}>{CONTACT_EMAIL} →</a>
+        </section>
+      </div>
+
+      <a class="btn btn-outline back" href={home}>{t.back}</a>
+    </div>
+  </main>
+  <Footer locale={locale} t={dict.footer} />
+</BaseLayout>
+
+<style>
+  .wrap {
+    padding-block: 5rem 7rem;
+    max-width: 52rem;
+  }
+  .kicker {
+    margin: 0 0 1rem;
+  }
+  .section-title {
+    margin: 0 0 0.75rem;
+  }
+  .updated {
+    margin: 0;
+    color: var(--muted-foreground);
+  }
+  .rule {
+    border-top: var(--line-ultra);
+    margin: 2rem 0;
+  }
+  .intro {
+    margin: 0 0 3rem;
+  }
+  .blocks {
+    border: var(--line-medium);
+  }
+  .block {
+    padding: 2rem;
+    border-bottom: var(--line-thin);
+  }
+  .block:last-child {
+    border-bottom: none;
+  }
+  .block-title {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+  }
+  .num {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--accent);
+  }
+  .block p {
+    margin: 0 0 1rem;
+  }
+  .block p:last-child {
+    margin-bottom: 0;
+  }
+  .hint {
+    color: var(--muted-foreground);
+  }
+  .steps,
+  .items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .steps {
+    counter-reset: step;
+  }
+  .steps li {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .steps li::before {
+    counter-increment: step;
+    content: counter(step, decimal-leading-zero);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--accent);
+    padding-top: 0.2rem;
+  }
+  .items li {
+    position: relative;
+    padding-inline-start: 1.25rem;
+  }
+  .items li::before {
+    content: '—';
+    position: absolute;
+    inset-inline-start: 0;
+    color: var(--muted-foreground);
+  }
+  .mail {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    text-decoration: none;
+    border-bottom: var(--line-thin);
+    padding-bottom: 0.15rem;
+  }
+  .mail:hover {
+    border-bottom-color: var(--accent);
+  }
+  .back {
+    margin-top: 3rem;
+  }
+</style>

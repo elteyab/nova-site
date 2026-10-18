@@ -89,6 +89,7 @@ export const en: Dictionary = {
     top: 'Back to top',
     contact: 'Contact',
     website: 'Personal website',
+    deleteAccount: 'Delete account',
   },
   sitemapPage: {
     title: 'Sitemap.',
@@ -100,6 +101,49 @@ export const en: Dictionary = {
   notFound: {
     title: '404 — Nothing here.',
     body: 'This page does not exist. The editor, however, does.',
+    back: '← Back to home',
+  },
+  deleteAccount: {
+    kicker: 'Google Play — Account deletion',
+    title: 'Delete your Nova account and data.',
+    updated: 'Last updated: 18 October 2026',
+    intro:
+      'This page explains how to request deletion of your Nova account and the data associated with it. Nova (app ID sd.adaa.codeide) is developed by Elteyab (Tayeb Ali), the developer shown on the Google Play store page.',
+    inAppTitle: 'Option 1 — Delete from inside the app (recommended)',
+    inAppBody:
+      'If Nova is still installed on your phone, you can delete your account directly in the app. Your sign-in account is deleted immediately.',
+    inAppSteps: [
+      'Open Nova.',
+      'Open Settings.',
+      'In the Account card, tap “Delete account”.',
+      'Confirm in the dialog. Your account is deleted immediately.',
+    ],
+    webTitle: 'Option 2 — Request deletion without the app',
+    webBody:
+      'If you no longer have Nova installed, email us from the address linked to your account and we will delete it for you, normally within 30 days.',
+    webEmailLabel:
+      'Send the request to elteyab@smart.sd with the subject “Nova account deletion”.',
+    deletedTitle: 'Data that is deleted',
+    deletedBody:
+      'When your account is deleted, the following data is permanently removed:',
+    deletedItems: [
+      'Your Nova sign-in account: email address, display name, and linked sign-in providers (Google, GitHub, X, or email/password).',
+      'Your profile record linked to your account ID (email, display name, linked providers).',
+      'Your device push-notification token.',
+      'Your rewards points balance and coupon/redemption history.',
+    ],
+    retainedTitle: 'Data that may be retained',
+    retainedBody: 'A limited set of data is kept after deletion:',
+    retainedItems: [
+      'Aggregated, de-identified analytics events may be retained for up to 14 months, and crash reports for up to 90 days, to keep the app stable. This data is not linked to your identity after deletion.',
+      'Records we are legally required to keep (for example for accounting or fraud prevention) are retained only for as long as the law requires.',
+      'Backups: copies in encrypted backups may persist for up to 30 days before being overwritten.',
+    ],
+    localTitle: 'Your code stays on your device',
+    localBody:
+      'Your projects and files live only on your phone and are never uploaded to our servers. Deleting your account does not touch them; uninstalling Nova removes the app, its runtime, and those local files.',
+    contactTitle: 'Contact',
+    contactBody: 'Questions about deletion? Email elteyab@smart.sd.',
     back: '← Back to home',
   },
 };
