@@ -51,7 +51,6 @@ export const fr: Dictionary = {
       { value: '10+', label: 'Langages exécutés sur l’appareil' },
       { value: '0', label: 'Serveurs — rien ne quitte votre téléphone' },
       { value: '100%', label: 'Hors-ligne après la première installation' },
-      { value: '0', label: 'Prix — gratuit pour toujours, un waqf' },
     ],
   },
   download: {

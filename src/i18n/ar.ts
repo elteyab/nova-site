@@ -51,7 +51,6 @@ export const ar: Dictionary = {
       { value: '+10', label: 'لغات تعمل على الجهاز نفسه' },
       { value: '0', label: 'خوادم — لا شيء يغادر هاتفك' },
       { value: '100%', label: 'يعمل دون اتصال بعد أول تثبيت' },
-      { value: '0', label: 'السعر — مجاني للأبد، وقف لله' },
     ],
   },
   download: {

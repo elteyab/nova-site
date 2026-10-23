@@ -51,7 +51,6 @@ export const en: Dictionary = {
       { value: '10+', label: 'Languages that run on-device' },
       { value: '0', label: 'Servers — nothing leaves your phone' },
       { value: '100%', label: 'Offline after the first install' },
-      { value: '0', label: 'Price — free forever, a waqf' },
     ],
   },
   download: {
