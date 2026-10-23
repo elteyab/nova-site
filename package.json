@@ -3,6 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=22.23.4"
+  },
   "description": "Nova IDE landing site (Astro, static, nova.elteyab.sd)",
   "scripts": {
     "dev": "astro dev",
